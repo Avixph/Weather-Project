@@ -1,0 +1,22 @@
+{
+  "name": "storm.ly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Avixph/Weather-Project.git",
+  "author": "Angel B. Fernandez <25628695+Avixph@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.6",
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "browserslist": [
+    "last 1 chrome version"
+  ]
+}
