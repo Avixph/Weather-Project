@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Storm.ly | Weather Application | OpenWeatherMap API</title>
+    <title>STORM.LY | Weather Application | OpenWeatherMap API</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <header>
-      <h1><img src="images+icons/storm.ly_logo.png" /></h1>
+    <header class="header-container">
+      <h1 class="logo"><img src="images+icons/storm.ly_logo.png" /></h1>
     </header>
 
     <div class="weather-wrap">
@@ -16,34 +20,42 @@
             type="text"
             name="city"
             value=""
-            placeholder="city"
-            id="city"
+            placeholder="Enter a city"
+            id="city-search"
           />
-          <input type="submit" value="Get Weather" id="getTemp" />
+          <button type="submit" id="getTemp">
+            Get <br />
+            Weather
+          </button>
         </form>
       </div>
-      <!-- <div class="weather-notification"></div> -->
       <div class="weather-container">
+        <div class="location">
+          <p>- -</p>
+        </div>
         <div class="weather-icon">
           <img src="images+icons/unknown.png" alt="" />
-        </div>
-        <div class="location">
-          <p>-</p>
         </div>
         <div class="temperature-description">
           <p>-</p>
         </div>
         <div class="temperature-value">
-          <p>- °<span>C</span></p>
+          <p>- °<span>F</span></p>
         </div>
         <div class="high-low-value">
-          <p>H:- °<span>C</span> L:- °<span>C</span></p>
+          <p>H:- °<span>F</span> L:- °<span>F</span></p>
         </div>
       </div>
     </div>
 
+    <footer class="footer-container">
+      <p class="copyright">
+        © STORM.LY <br />
+        Copyright 2020
+      </p>
+    </footer>
     <script
-      src="js/main.js"
+      src="js/testB.js"
       type="text/javascript"
       charset="utf-8"
       async
