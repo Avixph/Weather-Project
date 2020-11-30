@@ -1,8 +1,8 @@
 // const { default: Axios } = require("axios");
-
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
+import images from "../images/*.png";
+
+// require("dotenv").config();
 
 const searchInput = document.querySelector("#city-search");
 const getWeather = document.querySelector("#getTemp");
@@ -19,7 +19,8 @@ const api_key = process.env.API_KEY;
 // const weatherInfo = {};
 
 //Add event listener to search button
-getWeather.addEventListener("click", async () => {
+getWeather.addEventListener("click", async (e) => {
+  e.preventDefault();
   let locationQuery = searchInput.value;
   try {
     // Get weather data from api
@@ -29,25 +30,29 @@ getWeather.addEventListener("click", async () => {
     console.log(weatherApi);
 
     // Display the weather to the UI
-    let locationValue = `${weather.name}, ${weather.sys.country}`;
-    locationInfo.appendChild(locationValue);
+    const locationValue = `${weatherApi.name}, ${weatherApi.sys.country}`;
+    locationInfo.innerText = locationValue;
 
-    let iconnValue = `<img src="images+icons/${weather.weather[0].icon}.png"/>`;
-    iconInfo.appendChild(iconnValue);
+    let iconValue = `<img src="images+icons/${
+      images[weatherApi.weather[0].icon]
+    }.png"/>`;
+    iconInfo.innerHTML = iconValue;
 
-    let descValue = weather.weather[0].description;
-    descInfo.appendChild(descValue);
+    // iconInfo.innerHTML.setAttribute("src", images[weatherApi.weather[0].icon]);
 
-    let tempValue = `${Math.floor(weather.main.temp)}°<span>F</span>`;
-    tempInfo.appendChild(tempValue);
+    const descValue = weatherApi.weather[0].description;
+    descInfo.innerText = descValue;
 
-    let highLowValue = `H:${Math.floor(
-      weather.main.temp_max
-    )}<span>°F</span> L:${Math.floor(weather.main.temp_min)}<span>°F</span>`;
-    highLowInfo.appendChild(highLowValue);
+    const tempValue = `${Math.floor(weatherApi.main.temp)}°<span>F</span>`;
+    tempInfo.innerHTML = tempValue;
+
+    const highLowValue = `H:${Math.floor(
+      weatherApi.main.temp_max
+    )}<span>°F</span> L:${Math.floor(weatherApi.main.temp_min)}<span>°F</span>`;
+    highLowInfo.innerHTML = highLowValue;
 
     //check if the temperature is under 40, and red if above 90
-    if (Math.floor(weather.main.temp) <= 40) {
+    if (Math.floor(weatherApi.main.temp) <= 40) {
       tempInfo.getElementsByClassName.color = "var(--third-color)";
     } else if (Math.floor(weather.main.temp) >= 90) {
       tempInfo.getElementsByClassName.color = "var(--sixth-color)";
@@ -55,7 +60,7 @@ getWeather.addEventListener("click", async () => {
   } catch (err) {
     //Error handling
     console.log("Incorrect city name.", err);
-    let errorMessage = `Error: City Not Found.`;
-    locationInfo.appendChild(errorMessage);
+    let errorMessage = "Error: City Not Found.";
+    locationInfo.innerText = errorMessage;
   }
 });
